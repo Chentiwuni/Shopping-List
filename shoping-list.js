@@ -1,5 +1,8 @@
-let itemsContainer = document.getElementById('items-container');
-let totalContainer = document.getElementById('total-container');
+const itemsContainer = document.getElementById('items-container');
+const totalContainer = document.getElementById('total-container');
+const addItemField = document.getElementById('add-item-field');//access add item field
+const addQtyField = document.getElementById('add-qty-field');//access the qty field
+const addPriceField = document.getElementById('add-price-field');//access the price field
 
 //function for creating item name
 function createItemName(itemText) {
@@ -79,10 +82,6 @@ function createActionButtons() {
 
 //function for adding item list
 function addList() {
-    let addItemField = document.getElementById('add-item-field');//access add item field
-    let addQtyField = document.getElementById('add-qty-field');//access the qty field
-    let addPriceField = document.getElementById('add-price-field');//access the price field
-
     //check if add item field is empty
     if (addItemField.value === "") {
         alert('Add Item field must not be empty')
@@ -143,20 +142,22 @@ function addSubTotals() {
 //function for editing items
 function editItems(e) {
     if (e.target.classList.contains('edit-btn')) {
-        //access the parent element "wrapper"
-        let itemsWraper = e.target.parentElement.parentElement.parentElement.parentElement;
-        itemNameInput = itemsWraper.querySelector('.form-control');//access item field
+        //access the grand parent element of edit element
+        let editGParent = e.target.parentElement.parentElement.parentElement.parentElement;
+        itemNameInput = editGParent.querySelector('.form-control');//access item field
 
-        let priceInput = itemsWraper.querySelector('.sub-totals');//access sub totals field
+        let priceInput = editGParent.querySelector('.sub-totals');//access sub totals field
 
         //checks if item name field is empty
       if (itemNameInput.value === "") {
         alert('Item name field must not be empty')
+        itemNameInput.focus();
         return;
       }
         //checks if sub total field is a valid number
         if (isNaN(parseFloat(priceInput.value))) {
             alert('Price field cannot be empty and must be a number');
+            priceInput.focus();
             return;//stops execution if condition is not met, returns to the calling code
         }
 
@@ -176,9 +177,9 @@ function removeItem(e) {
     if (e.target.classList.contains('remove-btn')) {
         const confirmation = confirm('Are you sure you want to remove this item?');
         if (confirmation) {
-             //access the parent element "wrapper"
-        let itemsWraper = e.target.parentElement.parentElement.parentElement.parentElement;
-        itemsContainer.removeChild(itemsWraper);
+             //access the grand parent element of remove element
+        let removeGParent = e.target.parentElement.parentElement.parentElement.parentElement;
+        itemsContainer.removeChild(removeGParent);
 
         addSubTotals();
 
@@ -192,3 +193,27 @@ function removeItem(e) {
 //set up even listeners
 itemsContainer.addEventListener('click', editItems);
 itemsContainer.addEventListener('click', removeItem);
+
+//set event listener for "Enter key" on the add item input field
+addItemField.addEventListener('keyup', function(event) {
+    if (event.key === "Enter") {
+        addList();
+    }
+})
+
+//set event listener for "Enter key" on the add quantity input field
+addQtyField.addEventListener('keyup', function(event) {
+    if (event.key === "Enter") {
+        addList();
+    }
+})
+
+//set event listener for "Enter key" on the add price input field
+addPriceField.addEventListener('keyup', function(event) {
+    if (event.key === "Enter") {
+        addList();
+    }
+})
+
+//set the input field of add item name to focus when the page is reloaded
+addItemField.focus();

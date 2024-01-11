@@ -12,7 +12,7 @@ function createItemName(itemText) {
 
     //create item element 
     let itemNameEl = document.createElement('input');
-    itemNameEl.classList.add('form-control', 'border-0',);
+    itemNameEl.classList.add('form-control', 'border-0');
     itemNameEl.type = "text";
     itemNameEl.disabled = true;
 
@@ -137,7 +137,7 @@ function addSubTotals() {
         totalFigure += parseFloat(subTotal.value);
     })
     let totalEl = document.getElementById('total-figure');
-    totalEl.innerHTML = totalFigure;
+    totalEl.value = totalFigure;
 
 }
 

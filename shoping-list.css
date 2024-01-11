@@ -10,9 +10,14 @@ body {
 }
 
 .action-btn {
-    width: 90px;
+    width: 75px;
     color: white;
+    padding: 0;
 }
 .total-container {
     display: none;
+}
+
+.showme {
+    padding-left: 0;
 }

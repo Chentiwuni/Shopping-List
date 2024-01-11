@@ -55,20 +55,22 @@ function createActionButtons() {
 
     //create edit action div
     let editActDiv = document.createElement('div');
-    editActDiv.classList.add('col-10', 'col-md-6');
+    editActDiv.classList.add('col-10', 'col-md-5', 'showme');
 
     //create edit element
     let editEl = document.createElement('button');
-    editEl.classList.add('bg-success', 'border', 'rounded', 'action-btn', 'edit-btn');
+    editEl.classList.add('btn', 'btn-success', 'action-btn', 'edit-btn');
+    editEl.type = "button";
     editEl.innerHTML = "UPDATE";
 
     //create remove action div
     let removeActDiv = document.createElement('div');
-    removeActDiv.classList.add('col-10', 'col-md-6');
+    removeActDiv.classList.add('col-10', 'col-md-5', 'showme');
 
     //create remove action element
     let removeEl = document.createElement('button');
-    removeEl.classList.add('bg-danger', 'border', 'rounded', 'action-btn', 'remove-btn');
+    removeEl.classList.add('btn', 'btn-danger', 'action-btn', 'remove-btn');
+    removeEl.type = "button";
     removeEl.innerHTML = "REMOVE";
 
     col3.appendChild(actBtnCont);

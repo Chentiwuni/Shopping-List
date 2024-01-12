@@ -3,25 +3,40 @@ const totalContainer = document.getElementById('total-container');
 const addItemField = document.getElementById('add-item-field');//access add item field
 const addQtyField = document.getElementById('add-qty-field');//access the qty field
 const addPriceField = document.getElementById('add-price-field');//access the price field
+const topTitle = document.querySelectorAll('.top-title');
 
 //function for creating item name
 function createItemName(itemText) {
-    //create item name div
     let itemNameDiv = document.createElement("div");
-    itemNameDiv.classList.add('col-6', 'mt-3');
+    itemNameDiv.classList.add('col-5', 'mt-3');
 
     //create item element 
-    let itemNameEl = document.createElement('input');
-    itemNameEl.classList.add('form-control', 'border-0');
-    itemNameEl.type = "text";
-    itemNameEl.disabled = true;
+    let itemNameEl = document.createElement('div');
+    itemNameEl.classList.add('border-0', 'item-name');
 
     //append item element to item name div
     itemNameDiv.appendChild(itemNameEl);
 
-    itemNameEl.value = itemText;
+    itemNameEl.innerHTML = itemText;
     
     return itemNameDiv;
+}
+
+//function for creating item quantity
+function createItemQty(itemQty) {
+    let itemQtyDiv = document.createElement("div");
+    itemQtyDiv.classList.add('col-1', 'mt-3');
+
+    //create item element 
+    let itemQtyEl = document.createElement('div');
+    itemQtyEl.classList.add('border-0');
+
+    //append item element to item name div
+    itemQtyDiv.appendChild(itemQtyEl);
+
+    itemQtyEl.innerHTML = itemQty;
+    
+    return itemQtyDiv;
 }
 
 //function for creating item price
@@ -30,15 +45,13 @@ function createPrice(qty,price) {
     priceDiv.classList.add('col-3', 'mt-3');
 
     //create price element
-    let priceEl = document.createElement('input');
-    priceEl.classList.add('form-control', 'border-0', 'sub-totals', 'text-center');
-    priceEl.type = "text";
-    priceEl.disabled = true;
+    let priceEl = document.createElement('div');
+    priceEl.classList.add('border-0', 'sub-totals');
 
     //append item price to item price div
     priceDiv.appendChild(priceEl);
 
-    priceEl.value = qty * price;
+    priceEl.innerHTML = qty * price;
 
     return priceDiv;
 }
@@ -100,15 +113,17 @@ function addList() {
         itemsWrapper.classList.add('row', 'd-flex', 'align-items-center');
 
         let itemName = createItemName(addItemField.value); //create item name
+        let itemQty = createItemQty(addQtyField.value);//create quantity value
     
     let qty = parseFloat(document.getElementById('add-qty-field').value);
     let price = parseFloat(document.getElementById('add-price-field').value);
 
-    let itemSubTotalPrice = createPrice(qty, price);
+    let itemSubTotalPrice = createPrice(qty, price);//create item price
 
     let actionBtns = createActionButtons();
 
     itemsWrapper.appendChild(itemName);
+    itemsWrapper.appendChild(itemQty);
     itemsWrapper.appendChild(itemSubTotalPrice);
     itemsWrapper.appendChild(actionBtns);
 
@@ -121,8 +136,15 @@ function addList() {
 
     addItemField.focus();//set item name input field to focus
 
-    //display total container which holds sub totals totals
-    totalContainer.classList.remove('total-container');
+    //show top titles
+    topTitle.forEach(title => {
+        title.classList.remove('remove');
+    })
+
+    //show items container
+    if (itemsContainer.children.length === 3) {
+        totalContainer.classList.remove('total-container');
+    }
 
     addSubTotals();//call this function to add sub totals
     }
@@ -134,10 +156,10 @@ function addSubTotals() {
     let subTotalEl = document.querySelectorAll('.sub-totals');//get sub total element
     let totalFigure = 0;
     subTotalEl.forEach((subTotal)=> {
-        totalFigure += parseFloat(subTotal.value);
+        totalFigure += parseFloat(subTotal.innerHTML);
     })
     let totalEl = document.getElementById('total-figure');
-    totalEl.value = totalFigure;
+    totalEl.innerHTML = totalFigure;
 
 }
 
@@ -185,8 +207,17 @@ function removeItem(e) {
 
         addSubTotals();
 
-        if (itemsContainer.children.length === 0) {
+        //hide total container
+        if (itemsContainer.children.length === 2) {
             totalContainer.classList.add('total-container');
+        }
+        
+        //hide top titles
+        if (itemsContainer.children.length === 1) {
+            topTitle.forEach(title => {
+                title.classList.add('remove');
+            })
+        
         }
         }
     }

@@ -18,7 +18,22 @@ body {
     display: none;
 }
 
+.top-title {
+    color: orangered;
+}
+
+.remove {
+    display: none;
+}
+
 .showme {
     padding-left: 0;
 }
 
+.item-name {
+    overflow-wrap: break-word;
+}
+
+.total-title {
+    color: orangered;
+}

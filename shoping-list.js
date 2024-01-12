@@ -4,6 +4,17 @@ const addItemField = document.getElementById('add-item-field');//access add item
 const addQtyField = document.getElementById('add-qty-field');//access the qty field
 const addPriceField = document.getElementById('add-price-field');//access the price field
 const topTitle = document.querySelectorAll('.top-title');
+const editContainer = document.getElementById('edit-container');
+
+//access the three edit fields
+let editItemNameField = document.getElementById('edit-item-field');
+let editQtyField = document.getElementById('edit-qty-field');
+let editPriceField = document.getElementById('edit-price-field');
+
+//declear the three created item fields globally
+let nameInput;
+let qtyInput;
+let priceInput;
 
 //function for creating item name
 function createItemName(itemText) {
@@ -29,7 +40,7 @@ function createItemQty(itemQty) {
 
     //create item element 
     let itemQtyEl = document.createElement('div');
-    itemQtyEl.classList.add('border-0');
+    itemQtyEl.classList.add('border-0', 'qty-input');
 
     //append item element to item name div
     itemQtyDiv.appendChild(itemQtyEl);
@@ -74,7 +85,7 @@ function createActionButtons() {
     let editEl = document.createElement('button');
     editEl.classList.add('btn', 'btn-success', 'action-btn', 'edit-btn');
     editEl.type = "button";
-    editEl.innerHTML = "UPDATE";
+    editEl.innerHTML = "EDIT";
 
     //create remove action div
     let removeActDiv = document.createElement('div');
@@ -99,15 +110,20 @@ function createActionButtons() {
 function addList() {
     //check if add item field is empty
     if (addItemField.value === "") {
-        alert('Add Item field must not be empty')
+        alert('Add Item field must not be empty');
+        addItemField.focus();
     } else if (addQtyField.value === "") {
-        alert('Quantity field must not be empty')
+        alert('Quantity field must not be empty');
+        addQtyField.focus();
     } else if (addPriceField.value === "") {
-        alert('Price field must not be empty')
+        alert('Price field must not be empty');
+        addPriceField.focus();
     } else if (isNaN(addQtyField.value)) {
-        alert('Quantity field must be a number')
+        alert('Quantity field must be a valid number');
+        addQtyField.focus();
     } else if (isNaN(addPriceField.value)) {
-        alert('Price field must be a number')
+        alert('Price field must be a valid number');
+        addPriceField.focus();
     } else {
         let itemsWrapper = document.createElement('div');
         itemsWrapper.classList.add('row', 'd-flex', 'align-items-center');
@@ -168,33 +184,71 @@ function editItems(e) {
     if (e.target.classList.contains('edit-btn')) {
         //access the grand parent element of edit element
         let editGParent = e.target.parentElement.parentElement.parentElement.parentElement;
-        itemNameInput = editGParent.querySelector('.form-control');//access item field
 
-        let priceInput = editGParent.querySelector('.sub-totals');//access sub totals field
+        //access the three created items fields
+        nameInput = editGParent.querySelector('.item-name');
+        qtyInput = editGParent.querySelector('.qty-input');
+        priceInput = editGParent.querySelector('.sub-totals');
 
-        //checks if item name field is empty
-      if (itemNameInput.value === "") {
-        alert('Item name field must not be empty')
-        itemNameInput.focus();
-        return;
-      }
-        //checks if sub total field is a valid number
-        if (isNaN(parseFloat(priceInput.value))) {
-            alert('Price field cannot be empty and must be a number');
-            priceInput.focus();
-            return;//stops execution if condition is not met, returns to the calling code
-        }
+        //display edit container
+        editContainer.classList.remove('edit-remove');
 
-        itemNameInput.disabled = !itemNameInput.disabled;//toggles the item field
-        priceInput.disabled = !priceInput.disabled;//toggles the sub total field
+        editItemNameField.value = nameInput.innerHTML;
+        editQtyField.value = qtyInput.innerHTML;
+        editPriceField.value = priceInput.innerHTML;
 
-        if (!itemNameInput.disabled) {
-            itemNameInput.focus(); // Set focus on itemNameInput if it is not disabled
-        }
-        
         addSubTotals();
     }
 }
+
+//edit save functioin
+function save() {
+    //check if edit item name is empty
+    if (editItemNameField.value === "") {
+        alert('Item name field must not be empty');
+        editItemNameField.focus();
+        return;
+    }
+
+    //check if edit item quantity is empty
+    if (editQtyField.value === "") {
+        alert('Item quantity field must not be empty');
+        editQtyField.focus();
+        return;
+    }
+
+    //check if edit item price field is empty
+    if (editPriceField.value === "") {
+        alert('Edit price field must not be empty');
+        editPriceField.focus();
+        return;
+    }
+
+    //check if edit quantity field is a valid number
+    if (isNaN(parseFloat(editQtyField.value)) || !/^\d+$/.test(editQtyField.value)) {
+        alert('Edit quantity field must be a valid number');
+        editQtyField.focus();
+        return;
+    }
+
+    //check if price field is a valid number
+    if (isNaN(parseFloat(editPriceField.value)) || !/^\d+$/.test(editPriceField.value)) {
+        alert('Edit price field must be a valid number');
+        editPriceField.focus();
+        return;
+    }
+
+    //update the three created item fields(item name, item quantity and item price)
+    //with the values of edit input fields
+    nameInput.innerHTML = editItemNameField.value;
+    qtyInput.innerHTML = editQtyField.value;
+    priceInput.innerHTML = editPriceField.value;
+
+    addSubTotals();//call this function to update totals after editing
+
+    editContainer.classList.add('edit-remove');//hide edit container
+}
+
 
 //function for removing items
 function removeItem(e) {

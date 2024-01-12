@@ -41,13 +41,13 @@
       <div id="items-container">
         <div class="row d-flex align-items-center">
           <div class="col-5 mt-3"> 
-            <div class="border-0 top-title remove" id="item-name">Item Name</div>
+            <div class="border-0 top-title remove fw-bolder" id="item-name">Item name</div>
           </div>
           <div class="col-1 mt-3"> 
-            <div class="border-0 top-title remove" id="item-name">Qty</div>
+            <div class="border-0 top-title remove fw-bolder" id="item-name">Qty</div>
           </div>
           <div class="col-3 mt-3"> 
-            <div class="border-0 top-title remove" id="item-price">Sub-total</div>
+            <div class="border-0 top-title remove fw-bolder" id="item-price">Sub total</div>
           </div>
           <div class="col-3 mt-3">
             <div class="row action-container" id="action-container">
@@ -68,24 +68,24 @@
         <div class="col-3 mt-3"></div> 
       </div>
 
-      <div class="edit-container rounded">
+      <div class="edit-container rounded edit-remove" id="edit-container">
         <div class="row g-1">
           <div class="col-8 mt-3"> 
-            <input class="form-control" type="text" id="add-item-field" placeholder="Add an item to your shoping list" maxlength=""> 
+            <input class="form-control" type="text" id="edit-item-field" placeholder="Add an item to your shoping list" maxlength=""> 
           </div>
   
           <div class="col-2 mt-3"> 
-            <input class="form-control" type="text" id="add-qty-field" placeholder="QTY"> 
+            <input class="form-control" type="text" id="edit-qty-field" placeholder="QTY"> 
           </div>
   
           <div class="col-2 mt-3"> 
-            <input class="form-control" type="text" id="add-price-field" placeholder="price"> 
+            <input class="form-control" type="text" id="edit-price-field" placeholder="price"> 
           </div>
       </div>
 
         <div class="row">
           <div class="col-1"> 
-            <button type="button" class="btn btn-success" onclick="addList()"> Save </button> 
+            <button type="button" class="btn btn-success" onclick="save()"> Save </button> 
           </div>
         </div>
       </div>

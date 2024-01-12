@@ -12,27 +12,31 @@
   <body>
     <div class="container border rounded overflow-auto mt-5">
 
-      <div class="row input-container g-1">
+      <div class="input-container">
+        <div class="row input-container g-1">
 
-        <div class="col-8 mt-3"> 
-          <input class="form-control" type="text" id="add-item-field" placeholder="Add an item to your shoping list" maxlength=""> 
+          <div class="col-8 mt-3"> 
+            <input class="form-control" type="text" id="add-item-field" placeholder="Add an item to your shoping list" maxlength=""> 
+          </div>
+  
+          <div class="col-2 mt-3"> 
+            <input class="form-control" type="text" id="add-qty-field" placeholder="QTY"> 
+          </div>
+  
+          <div class="col-2 mt-3"> 
+            <input class="form-control" type="text" id="add-price-field" placeholder="price"> 
+          </div>
+  
         </div>
-
-        <div class="col-2 mt-3"> 
-          <input class="form-control" type="text" id="add-qty-field" placeholder="QTY"> 
-        </div>
-
-        <div class="col-2 mt-3"> 
-          <input class="form-control" type="text" id="add-price-field" placeholder="price"> 
+  
+        <div class="row">
+          <div class="col-1"> 
+            <button type="button" class="btn btn-primary btn-lg" onclick="addList()"> + </button> 
+          </div>
         </div>
 
       </div>
 
-      <div class="row">
-        <div class="col-1"> 
-          <button type="button" class="btn btn-primary btn-lg" onclick="addList()"> + </button> 
-        </div>
-      </div>
 
       <div id="items-container">
         <div class="row d-flex align-items-center">
@@ -56,12 +60,34 @@
         </div>       
       </div> 
 
-      <div class="row total-container" id="total-container">
-        <div class="col-5 mt-3 fw-bolder">TOTALS:</div>
+
+      <div class="total-container row" id="total-container">
+        <div class="col-5 mt-3 fw-bolder text-end">TOTALS:</div>
         <div class="col-1 mt-3 fw-bolder text-end"></div>
         <div class="col-3 mt-3"> <div class="border-0 fw-bolder" id="total-figure"></div> </div>
         <div class="col-3 mt-3"></div> 
-        
+      </div>
+
+      <div class="edit-container rounded">
+        <div class="row g-1">
+          <div class="col-8 mt-3"> 
+            <input class="form-control" type="text" id="add-item-field" placeholder="Add an item to your shoping list" maxlength=""> 
+          </div>
+  
+          <div class="col-2 mt-3"> 
+            <input class="form-control" type="text" id="add-qty-field" placeholder="QTY"> 
+          </div>
+  
+          <div class="col-2 mt-3"> 
+            <input class="form-control" type="text" id="add-price-field" placeholder="price"> 
+          </div>
+      </div>
+
+        <div class="row">
+          <div class="col-1"> 
+            <button type="button" class="btn btn-success" onclick="addList()"> Save </button> 
+          </div>
+        </div>
       </div>
 
     </div>

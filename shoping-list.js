@@ -197,6 +197,16 @@ function editItems(e) {
         editQtyField.value = qtyInput.innerHTML;
         editPriceField.value = priceInput.innerHTML;
 
+        editItemNameField.focus();//set edit item name field active
+
+         // disable body scrolling
+         document.body.style.overflow = 'hidden';
+
+         // add overlay to cover the entire page
+         let overlay = document.createElement('div');
+         overlay.classList.add('overlay');
+         document.body.appendChild(overlay);
+
         addSubTotals();
     }
 }
@@ -247,6 +257,13 @@ function save() {
     addSubTotals();//call this function to update totals after editing
 
     editContainer.classList.add('edit-remove');//hide edit container
+
+    // remove overlay and enable scrolling
+    document.body.style.overflow = 'auto';
+    let overlay = document.querySelector('.overlay');
+    if (overlay) {
+        document.body.removeChild(overlay);
+    }
 }
 
 

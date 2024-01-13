@@ -193,9 +193,11 @@ function editItems(e) {
         //display edit container
         editContainer.classList.remove('edit-remove');
 
+        let priceToEdit = parseFloat(priceInput.innerHTML)/parseFloat(qtyInput.innerHTML);
+
         editItemNameField.value = nameInput.innerHTML;
         editQtyField.value = qtyInput.innerHTML;
-        editPriceField.value = priceInput.innerHTML;
+        editPriceField.value = priceToEdit;
 
         editItemNameField.focus();//set edit item name field active
 
@@ -250,9 +252,10 @@ function save() {
 
     //update the three created item fields(item name, item quantity and item price)
     //with the values of edit input fields
+    let newSubTotal = parseFloat(editPriceField.value)*parseFloat(editQtyField.value);
     nameInput.innerHTML = editItemNameField.value;
     qtyInput.innerHTML = editQtyField.value;
-    priceInput.innerHTML = editPriceField.value;
+    priceInput.innerHTML = newSubTotal;
 
     addSubTotals();//call this function to update totals after editing
 

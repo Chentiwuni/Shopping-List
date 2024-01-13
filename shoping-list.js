@@ -19,7 +19,7 @@ let priceInput;
 //function for creating item name
 function createItemName(itemText) {
     let itemNameDiv = document.createElement("div");
-    itemNameDiv.classList.add('col-5', 'mt-3');
+    itemNameDiv.classList.add('col-4', 'mt-3');
 
     //create item element 
     let itemNameEl = document.createElement('div');
@@ -36,7 +36,7 @@ function createItemName(itemText) {
 //function for creating item quantity
 function createItemQty(itemQty) {
     let itemQtyDiv = document.createElement("div");
-    itemQtyDiv.classList.add('col-1', 'mt-3');
+    itemQtyDiv.classList.add('col-2', 'mt-3');
 
     //create item element 
     let itemQtyEl = document.createElement('div');
@@ -79,7 +79,7 @@ function createActionButtons() {
 
     //create edit action div
     let editActDiv = document.createElement('div');
-    editActDiv.classList.add('col-10', 'col-md-5', 'showme');
+    editActDiv.classList.add('col-10', 'col-md-5', 'action-div');
 
     //create edit element
     let editEl = document.createElement('button');
@@ -89,7 +89,7 @@ function createActionButtons() {
 
     //create remove action div
     let removeActDiv = document.createElement('div');
-    removeActDiv.classList.add('col-10', 'col-md-5', 'showme');
+    removeActDiv.classList.add('col-10', 'col-md-5', 'mt-2', 'mt-md-0', 'action-div');
 
     //create remove action element
     let removeEl = document.createElement('button');

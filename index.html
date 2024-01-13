@@ -12,19 +12,28 @@
   <body>
     <div class="container border rounded overflow-auto mt-5">
 
+      <div class="logo-container row">
+        <div class="col-12 col-md-6">
+          <div class="text-center logo-text">My Shoping List</div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="text-center"> <img src="my-shoping-list.png"> </div>
+        </div>
+      </div>
+
       <div class="input-container">
         <div class="row input-container g-1">
 
           <div class="col-8 mt-3"> 
-            <input class="form-control" type="text" id="add-item-field" placeholder="Add an item to your shoping list" maxlength=""> 
+            <input class="form-control" type="text" id="add-item-field" placeholder="Add an item to your shoping list" maxlength="50"> 
           </div>
   
           <div class="col-2 mt-3"> 
-            <input class="form-control" type="text" id="add-qty-field" placeholder="QTY"> 
+            <input class="form-control" type="text" id="add-qty-field" placeholder="QTY" maxlength="5"> 
           </div>
   
           <div class="col-2 mt-3"> 
-            <input class="form-control" type="text" id="add-price-field" placeholder="price"> 
+            <input class="form-control" type="text" id="add-price-field" placeholder="price" maxlength="6"> 
           </div>
   
         </div>
@@ -40,10 +49,10 @@
 
       <div id="items-container">
         <div class="row d-flex align-items-center">
-          <div class="col-5 mt-3"> 
+          <div class="col-4 mt-3"> 
             <div class="border-0 top-title remove fw-bolder" id="item-name">Item name</div>
           </div>
-          <div class="col-1 mt-3"> 
+          <div class="col-2 mt-3"> 
             <div class="border-0 top-title remove fw-bolder" id="item-name">Qty</div>
           </div>
           <div class="col-3 mt-3"> 
@@ -63,23 +72,23 @@
 
       <div class="total-container row" id="total-container">
         <div class="col-5 mt-3 fw-bolder text-end">TOTALS:</div>
-        <div class="col-1 mt-3 fw-bolder text-end"></div>
-        <div class="col-3 mt-3"> <div class="border-0 fw-bolder" id="total-figure"></div> </div>
+        <div class="col-1 mt-3"></div>
+        <div class="col-3 mt-3"> <div class="border-0 fw-bolder sum-total" id="total-figure"></div> </div>
         <div class="col-3 mt-3"></div> 
       </div>
 
       <div class="edit-container rounded edit-remove" id="edit-container">
         <div class="row g-1">
           <div class="col-8 mt-3"> 
-            <input class="form-control" type="text" id="edit-item-field" placeholder="Add an item to your shoping list" maxlength=""> 
+            <input class="form-control" type="text" id="edit-item-field" placeholder="Add an item to your shoping list" maxlength="50"> 
           </div>
   
           <div class="col-2 mt-3"> 
-            <input class="form-control" type="text" id="edit-qty-field" placeholder="QTY"> 
+            <input class="form-control" type="text" id="edit-qty-field" placeholder="QTY" maxlength="5"> 
           </div>
   
           <div class="col-2 mt-3"> 
-            <input class="form-control" type="text" id="edit-price-field" placeholder="price"> 
+            <input class="form-control" type="text" id="edit-price-field" placeholder="price" maxlength="6"> 
           </div>
       </div>
 

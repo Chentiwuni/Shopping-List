@@ -14,7 +14,7 @@ let editPriceField = document.getElementById('edit-price-field');
 //declear the three created item fields globally
 let nameInput;
 let qtyInput;
-let priceInput;
+let subTotalInput;
 
 //function for creating item name
 function createItemName(itemText) {
@@ -188,12 +188,12 @@ function editItems(e) {
         //access the three created items fields
         nameInput = editGParent.querySelector('.item-name');
         qtyInput = editGParent.querySelector('.qty-input');
-        priceInput = editGParent.querySelector('.sub-totals');
+        subTotalInput = editGParent.querySelector('.sub-totals');
 
         //display edit container
         editContainer.classList.remove('edit-remove');
 
-        let priceToEdit = parseFloat(priceInput.innerHTML)/parseFloat(qtyInput.innerHTML);
+        let priceToEdit = parseFloat(subTotalInput.innerHTML)/parseFloat(qtyInput.innerHTML);
 
         editItemNameField.value = nameInput.innerHTML;
         editQtyField.value = qtyInput.innerHTML;
@@ -255,7 +255,7 @@ function save() {
     let newSubTotal = parseFloat(editPriceField.value)*parseFloat(editQtyField.value);
     nameInput.innerHTML = editItemNameField.value;
     qtyInput.innerHTML = editQtyField.value;
-    priceInput.innerHTML = newSubTotal;
+    subTotalInput.innerHTML = newSubTotal;
 
     addSubTotals();//call this function to update totals after editing
 

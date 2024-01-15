@@ -19,7 +19,7 @@ let subTotalInput;
 //function for creating item name
 function createItemName(itemText) {
     let itemNameDiv = document.createElement("div");
-    itemNameDiv.classList.add('col-4', 'mt-3');
+    itemNameDiv.classList.add('col-3', 'mt-3');
 
     //create item element 
     let itemNameEl = document.createElement('div');
@@ -36,7 +36,7 @@ function createItemName(itemText) {
 //function for creating item quantity
 function createItemQty(itemQty) {
     let itemQtyDiv = document.createElement("div");
-    itemQtyDiv.classList.add('col-2', 'mt-3');
+    itemQtyDiv.classList.add('col-1', 'mt-3');
 
     //create item element 
     let itemQtyEl = document.createElement('div');
@@ -50,7 +50,24 @@ function createItemQty(itemQty) {
     return itemQtyDiv;
 }
 
-//function for creating item price
+//function for creating item unit price
+function createUnitPrice(PriceUnit) {
+    let unitPriceDiv = document.createElement('div');
+    unitPriceDiv.classList.add('col-2', 'mt-3');
+
+    //create price element
+    let unitPriceEl = document.createElement('div');
+    unitPriceEl.classList.add('border-0', 'unit-price');
+
+    //append item price to item price div
+    unitPriceDiv.appendChild(unitPriceEl);
+
+    unitPriceEl.innerHTML = PriceUnit;
+
+    return unitPriceDiv;
+}
+
+//function for creating item sub total price
 function createPrice(qty,price) {
     let priceDiv = document.createElement('div');
     priceDiv.classList.add('col-3', 'mt-3');
@@ -83,7 +100,7 @@ function createActionButtons() {
 
     //create edit element
     let editEl = document.createElement('button');
-    editEl.classList.add('btn', 'btn-success', 'action-btn', 'edit-btn');
+    editEl.classList.add('btn', 'btn-success', 'btn-sm', 'action-btn', 'edit-btn');
     editEl.type = "button";
     editEl.innerHTML = "EDIT";
 
@@ -93,7 +110,7 @@ function createActionButtons() {
 
     //create remove action element
     let removeEl = document.createElement('button');
-    removeEl.classList.add('btn', 'btn-danger', 'action-btn', 'remove-btn');
+    removeEl.classList.add('btn', 'btn-danger', 'btn-sm', 'action-btn', 'remove-btn');
     removeEl.type = "button";
     removeEl.innerHTML = "REMOVE";
 
@@ -130,6 +147,7 @@ function addList() {
 
         let itemName = createItemName(addItemField.value); //create item name
         let itemQty = createItemQty(addQtyField.value);//create quantity value
+        let unitPrice = createUnitPrice(addPriceField.value);//access the price input field
     
     let qty = parseFloat(document.getElementById('add-qty-field').value);
     let price = parseFloat(document.getElementById('add-price-field').value);
@@ -140,6 +158,7 @@ function addList() {
 
     itemsWrapper.appendChild(itemName);
     itemsWrapper.appendChild(itemQty);
+    itemsWrapper.appendChild(unitPrice);
     itemsWrapper.appendChild(itemSubTotalPrice);
     itemsWrapper.appendChild(actionBtns);
 
